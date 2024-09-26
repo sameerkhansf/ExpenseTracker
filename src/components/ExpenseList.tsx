@@ -21,16 +21,18 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete }) => {
             </span>
             : ${expense.amount.toFixed(2)} - {expense.category}
           </div>
-          <div>
+          <div className="flex space-x-2">
             <Link
               href={`/edit-expense/${expense._id}`}
-              className="text-blue-500 hover:underline mr-4"
+              title="Edit Expense"
+              className="text-blue-500 hover:underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Edit
             </Link>
             <button
               onClick={() => onDelete(expense._id)}
-              className="text-red-500 hover:underline"
+              title="Delete Expense"
+              className="text-red-500 hover:underline bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             >
               Delete
             </button>

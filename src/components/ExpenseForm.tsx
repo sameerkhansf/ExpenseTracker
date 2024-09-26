@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Expense } from "@/types/expense";
-
+import { IoIosArrowDown, IoLogoUsd } from "react-icons/io";
 interface ExpenseFormProps {
   onSubmit: (expenseData: Omit<Expense, "_id">) => Promise<void>;
   onCancel: () => void;
@@ -36,32 +36,38 @@ export default function ExpenseForm({ onSubmit, onCancel }: ExpenseFormProps) {
         <label htmlFor="amount" className="block text-sm font-medium mb-1">
           Amount
         </label>
-        <input
-          type="number"
-          id="amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
+        <div className="relative">
+          <IoLogoUsd className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input
+            type="number"
+            id="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
+            required
+          />
+        </div>
       </div>
       <div>
         <label htmlFor="category" className="block text-sm font-medium mb-1">
           Category
         </label>
-        <select
-          id="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        >
-          {CATEGORIES.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <IoIosArrowDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
+            required
+          >
+            {CATEGORIES.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div>
         <label htmlFor="date" className="block text-sm font-medium mb-1">
@@ -72,7 +78,7 @@ export default function ExpenseForm({ onSubmit, onCancel }: ExpenseFormProps) {
           id="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
           required
         />
       </div>

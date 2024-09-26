@@ -14,7 +14,7 @@ import {
   FaSun,
 } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { Pie } from "react-chartjs-2";
+import { Doughnut, Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
@@ -126,7 +126,7 @@ export default function Dashboard() {
     document.documentElement.classList.toggle("dark");
   };
 
-  const pieChartData = {
+  const doughnutChartData = {
     labels: Object.keys(expensesByCategory),
     datasets: [
       {
@@ -151,7 +151,7 @@ export default function Dashboard() {
     ],
   };
 
-  const pieChartOptions = {
+  const doughnutChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -160,7 +160,6 @@ export default function Dashboard() {
       },
     },
   };
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed w-full z-10">
@@ -279,7 +278,10 @@ export default function Dashboard() {
           >
             <h2 className="text-xl font-semibold mb-4">Expense Distribution</h2>
             <div className="h-64">
-              <Pie data={pieChartData} options={pieChartOptions} />
+              <Doughnut
+                data={doughnutChartData}
+                options={doughnutChartOptions}
+              />
             </div>
           </motion.div>
 
