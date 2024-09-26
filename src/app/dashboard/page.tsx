@@ -13,12 +13,13 @@ import {
   FaMoon,
   FaSun,
 } from "react-icons/fa";
-import { IoLogOut, IoLogOutOutline } from "react-icons/io5";
+import { IoLogOut } from "react-icons/io5";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { signOut } from "next-auth/react";
+import { motion } from "framer-motion";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-import { signOut } from "next-auth/react";
 
 export default function Dashboard() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -97,7 +98,7 @@ export default function Dashboard() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         Loading...
       </div>
     );
@@ -161,24 +162,16 @@ export default function Dashboard() {
   };
 
   return (
-    <div
-      className={`min-h-screen ${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
-      }`}
-    >
-      <nav
-        className={`${
-          darkMode ? "bg-gray-800" : "bg-white"
-        } border-b border-gray-200 fixed w-full z-10`}
-      >
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed w-full z-10">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <h1 className="text-xl font-bold">ExpenseTracker</h1>
+          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">
+            ExpenseTracker
+          </h1>
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-full ${
-                darkMode ? "bg-gray-700" : "bg-gray-200"
-              }`}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
             >
               {darkMode ? (
                 <FaSun className="text-yellow-500" />
@@ -186,117 +179,131 @@ export default function Dashboard() {
                 <FaMoon className="text-gray-600" />
               )}
             </button>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsAddExpenseModalOpen(true)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center"
+              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors flex items-center"
             >
               <FaPlus className="mr-2" /> Add Expense
-            </button>
+            </motion.button>
             <button
               onClick={logout}
-              className={`p-2 rounded-full ${
-                darkMode ? "bg-gray-700" : "bg-gray-200"
-              }`}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
             >
-              {darkMode ? (
-                <IoLogOutOutline className="text-yellow-500" />
-              ) : (
-                <IoLogOut className="text-gray-600" />
-              )}
+              <IoLogOut className="text-gray-600 dark:text-gray-300" />
             </button>
           </div>
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 pt-20 pb-8">
+      <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div
-            className={`${
-              darkMode ? "bg-gray-800" : "bg-white"
-            } rounded-lg p-6 shadow-lg`}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
           >
             <div className="flex items-center mb-4">
               <FaWallet className="text-blue-500 text-2xl mr-4" />
               <div>
-                <p className="text-sm text-gray-500">Total Expenses</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Total Expenses
+                </p>
                 <p className="text-2xl font-bold">
                   ${totalExpenses.toFixed(2)}
                 </p>
               </div>
             </div>
-            <div className="h-2 bg-blue-200 rounded-full">
+            <div className="h-2 bg-blue-200 dark:bg-blue-700 rounded-full">
               <div
                 className="h-2 bg-blue-500 rounded-full"
                 style={{ width: `${(totalExpenses / 5000) * 100}%` }}
               ></div>
             </div>
-            <p className="text-sm text-gray-500 mt-2">Monthly budget: $5,000</p>
-          </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              Monthly budget: $5,000
+            </p>
+          </motion.div>
 
-          <div
-            className={`${
-              darkMode ? "bg-gray-800" : "bg-white"
-            } rounded-lg p-6 shadow-lg`}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
           >
             <div className="flex items-center mb-4">
               <FaChartLine className="text-green-500 text-2xl mr-4" />
               <div>
-                <p className="text-sm text-gray-500">Average Expense</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Average Expense
+                </p>
                 <p className="text-2xl font-bold">
                   ${averageExpense.toFixed(2)}
                 </p>
               </div>
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Based on {expenses.length} transactions
             </p>
-          </div>
+          </motion.div>
 
-          <div
-            className={`${
-              darkMode ? "bg-gray-800" : "bg-white"
-            } rounded-lg p-6 shadow-lg`}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
           >
             <div className="flex items-center mb-4">
               <FaChartPie className="text-yellow-500 text-2xl mr-4" />
               <div>
-                <p className="text-sm text-gray-500">Top Category</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Top Category
+                </p>
                 <p className="text-2xl font-bold">{topCategory}</p>
               </div>
             </div>
-            <p className="text-sm text-gray-500">Most frequent expense type</p>
-          </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Most frequent expense type
+            </p>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div
-            className={`${
-              darkMode ? "bg-gray-800" : "bg-white"
-            } rounded-lg shadow-lg p-6`}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
           >
             <h2 className="text-xl font-semibold mb-4">Expense Distribution</h2>
             <div className="h-64">
               <Pie data={pieChartData} options={pieChartOptions} />
             </div>
-          </div>
+          </motion.div>
 
-          <div
-            className={`${
-              darkMode ? "bg-gray-800" : "bg-white"
-            } rounded-lg shadow-lg p-6`}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
           >
             <h2 className="text-xl font-semibold mb-4">Monthly Trend</h2>
             <div className="h-64 flex items-center justify-center">
               <FaChartLine className="text-6xl text-gray-400" />
-              <p className="ml-4 text-gray-500">Coming soon</p>
+              <p className="ml-4 text-gray-500 dark:text-gray-400">
+                Coming soon
+              </p>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div
-          className={`${
-            darkMode ? "bg-gray-800" : "bg-white"
-          } rounded-lg shadow-lg p-6`}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
         >
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold">Recent Expenses</h2>
@@ -306,9 +313,7 @@ export default function Dashboard() {
                 className={`p-2 rounded-md transition-colors ${
                   view === "list"
                     ? "bg-blue-500 text-white"
-                    : darkMode
-                    ? "bg-gray-700 text-gray-300"
-                    : "bg-gray-200 text-gray-600"
+                    : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
                 }`}
               >
                 <FaList />
@@ -318,9 +323,7 @@ export default function Dashboard() {
                 className={`p-2 rounded-md transition-colors ${
                   view === "summary"
                     ? "bg-blue-500 text-white"
-                    : darkMode
-                    ? "bg-gray-700 text-gray-300"
-                    : "bg-gray-200 text-gray-600"
+                    : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
                 }`}
               >
                 <FaChartPie />
@@ -345,22 +348,25 @@ export default function Dashboard() {
           ) : (
             <p className="text-gray-500 text-center py-4">No expenses found.</p>
           )}
-        </div>
+        </motion.div>
       </div>
 
       {isAddExpenseModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div
-            className={`${
-              darkMode ? "bg-gray-800" : "bg-white"
-            } rounded-lg p-6 w-full max-w-md`}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md"
           >
-            <h2 className="text-2xl font-bold mb-4">Add Expense</h2>
+            <h2 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">
+              Add Expense
+            </h2>
             <ExpenseForm
               onSubmit={handleAddExpense}
               onCancel={() => setIsAddExpenseModalOpen(false)}
             />
-          </div>
+          </motion.div>
         </div>
       )}
     </div>
