@@ -14,7 +14,7 @@ import {
   FaSun,
 } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { Doughnut, Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
