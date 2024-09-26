@@ -40,16 +40,13 @@ export default function Dashboard() {
         throw new Error("Failed to fetch expenses");
       }
       const data = await response.json();
-      console.log("Received data:", data);
       if (Array.isArray(data.expenses) && data.expenses.length > 0) {
         setExpenses(data.expenses);
       } else {
-        console.log("No expenses found, using fake data");
         // setExpenses(generateFakeExpenses());
       }
     } catch (error) {
       console.error("Error fetching expenses:", error);
-      console.log("Using fake data due to error");
       // setExpenses(generateFakeExpenses());
     } finally {
       setIsLoading(false);

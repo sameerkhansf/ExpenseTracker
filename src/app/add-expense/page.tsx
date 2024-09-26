@@ -27,9 +27,6 @@ export default function AddExpense() {
         throw new Error(errorData.error || "Failed to add expense");
       }
 
-      const responseData = await response.json();
-      console.log("Expense added:", responseData);
-
       router.push("/dashboard");
     } catch (error) {
       console.error("Error adding expense:", error);

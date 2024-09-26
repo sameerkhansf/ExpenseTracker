@@ -22,7 +22,6 @@ const ExpenseSchema = new Schema({
 }, { timestamps: true });
 
 ExpenseSchema.pre('save', function(next) {
-  console.log('Saving expense:', this.toObject());
   if (!this.user) {
     console.error('User ID is missing');
   }

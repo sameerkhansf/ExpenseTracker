@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -33,86 +35,131 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-md">
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
-        >
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-            Create an account
-          </h2>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="John Doe"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-              type="submit"
-            >
-              Sign Up
-            </button>
-          </div>
-          {error && <p className="text-red-500 text-xs italic mt-4">{error}</p>}
-        </form>
-        <p className="text-center text-gray-500 text-xs">
-          Already have an account?{" "}
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+      <header className="p-5 bg-transparent border-b border-gray-200 dark:border-gray-800">
+        <nav className="container mx-auto">
           <Link
-            href="/auth/login"
-            className="text-blue-500 hover:text-blue-800"
+            href="/"
+            className="text-3xl font-bold text-gray-900 dark:text-gray-100"
           >
-            Log in
+            ExpenseTracker
           </Link>
-        </p>
-      </div>
+        </nav>
+      </header>
+
+      <main className="flex-grow flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md"
+        >
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+          >
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="text-3xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400"
+            >
+              Create an account
+            </motion.h2>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <div className="relative">
+                <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  id="name"
+                  className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <div className="relative">
+                <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="email"
+                  id="email"
+                  className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mb-6">
+              <label
+                className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="password"
+                  id="password"
+                  className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-between"
+            >
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                type="submit"
+              >
+                Sign Up
+              </button>
+            </motion.div>
+            {error && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="text-red-500 text-sm italic mt-4 text-center"
+              >
+                {error}
+              </motion.p>
+            )}
+          </form>
+          <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
+            Already have an account?{" "}
+            <Link
+              href="/auth/login"
+              className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
+            >
+              Log in
+            </Link>
+          </p>
+        </motion.div>
+      </main>
     </div>
   );
 }
