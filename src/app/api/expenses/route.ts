@@ -13,15 +13,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  console.log("Session user:", session.user);
 
   const user = await User.findOne({ email: session.user.email });
   if (!user) {
-    console.log("User not found in database");
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  console.log("User found:", user);
 
   const expenseData = await request.json();
   const newExpense = new Expense({
@@ -29,11 +26,9 @@ export async function POST(request: Request) {
     user: user._id
   });
 
-  console.log("New expense before save:", newExpense.toObject());
 
   try {
     const savedExpense = await newExpense.save();
-    console.log("Expense saved:", savedExpense.toObject());
     return NextResponse.json({ message: "Expense added successfully", expense: savedExpense }, { status: 201 });
   } catch (error) {
     console.error("Error saving expense:", error);
@@ -45,24 +40,18 @@ export async function GET() {
   await dbConnect();
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {
-    console.log("No session or user found");
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  console.log("Session user:", session.user);
 
   const user = await User.findOne({ email: session.user.email });
   if (!user) {
-    console.log("User not found in database");
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  console.log("User found:", user);
 
   try {
-    console.log("Fetching expenses with query:", { user: user._id });
     const userExpenses = await Expense.find({ user: user._id });
-    console.log("Fetched expenses for user ID:", user._id, userExpenses);
     
     return NextResponse.json({ expenses: userExpenses });
   } catch (error) {
