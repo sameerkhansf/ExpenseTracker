@@ -1,34 +1,61 @@
 "use client";
 
 import Link from "next/link";
-import { FaChartLine, FaWallet, FaLock } from "react-icons/fa";
+import { FaChartLine, FaWallet, FaLock, FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <header className="p-5 bg-transparent border-b border-gray-200 dark:border-gray-800">
-        <nav className="container mx-auto flex justify-between items-center">
-          <Link
-            href="/"
-            className="text-3xl font-bold text-gray-900 dark:text-gray-100"
-          >
-            ExpenseTracker
-          </Link>
-          <div className="space-x-4">
+        <nav className="container mx-auto">
+          <div className="flex justify-between items-center">
             <Link
-              href="/auth/login"
-              className="hover:text-gray-600 dark:hover:text-gray-300 text-lg"
+              href="/"
+              className="text-3xl font-bold text-gray-900 dark:text-gray-100"
             >
-              Log in
+              ExpenseTracker
             </Link>
-            <Link
-              href="/auth/signup"
-              className="bg-gray-900 text-gray-100 dark:bg-gray-100 dark:text-gray-900 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-105"
+            <div className="hidden md:flex space-x-4">
+              <Link
+                href="/auth/login"
+                className="hover:text-gray-600 dark:hover:text-gray-300 text-lg"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="bg-gray-900 text-gray-100 dark:bg-gray-100 dark:text-gray-900 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-105"
+              >
+                Sign up
+              </Link>
+            </div>
+            <button
+              className="md:hidden text-gray-900 dark:text-gray-100"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              Sign up
-            </Link>
+              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
           </div>
+          {isMenuOpen && (
+            <div className="mt-4 flex flex-col space-y-4 md:hidden">
+              <Link
+                href="/auth/login"
+                className="hover:text-gray-600 dark:hover:text-gray-300 text-lg"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="bg-gray-900 text-gray-100 dark:bg-gray-100 dark:text-gray-900 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-105 text-center"
+              >
+                Sign up
+              </Link>
+            </div>
+          )}
         </nav>
       </header>
 
