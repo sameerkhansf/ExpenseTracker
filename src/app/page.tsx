@@ -22,13 +22,13 @@ export default function Home() {
             <div className="hidden md:flex space-x-4">
               <Link
                 href="/auth/login"
-                className="hover:text-gray-600 dark:hover:text-gray-300 text-lg"
+                className="hover:text-gray-600 dark:hover:text-gray-300 text-lg transition duration-300 ease-in-out transform hover:scale-105"
               >
                 Log in
               </Link>
               <Link
                 href="/auth/signup"
-                className="bg-gray-900 text-gray-100 dark:bg-gray-100 dark:text-gray-900 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-105"
+                className="bg-gradient-to-r from-blue-500 to-teal-400 text-gray-100 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-110 ease-out duration-300"
               >
                 Sign up
               </Link>
@@ -44,13 +44,13 @@ export default function Home() {
             <div className="mt-4 flex flex-col space-y-4 md:hidden">
               <Link
                 href="/auth/login"
-                className="hover:text-gray-600 dark:hover:text-gray-300 text-lg"
+                className="hover:text-gray-600 dark:hover:text-gray-300 text-lg transition duration-300 ease-in-out transform hover:scale-105"
               >
                 Log in
               </Link>
               <Link
                 href="/auth/signup"
-                className="bg-gray-900 text-gray-100 dark:bg-gray-100 dark:text-gray-900 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-105 text-center"
+                className="bg-gradient-to-r from-blue-500 to-teal-400 text-gray-100 px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-110 ease-out duration-300 text-center"
               >
                 Sign up
               </Link>
@@ -83,17 +83,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex justify-center space-x-4"
+              className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 justify-center"
             >
               <Link
                 href="/auth/signup"
-                className="bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105"
+                // className="bg-blue-500 text-white font-bold py-3 px-6 sm:px-8 sm:py-3 rounded-full shadow-md hover:shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105 ease-out duration-300 w-full sm:w-auto text-center"
+                className=" border bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold px-6 py-2 rounded-full shadow hover:shadow-md transition-transform transform hover:scale-110 ease-out duration-300 w-full sm:w-auto text-center"
               >
                 Start Free Trial
               </Link>
               <Link
                 href="#features"
-                className="border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-semibold py-3 px-8 rounded-full hover:shadow-md transition-transform transform hover:scale-105"
+                className="border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-semibold py-3 px-6 sm:px-8 sm:py-3 rounded-full hover:shadow-md transition-transform transform hover:scale-105 w-full sm:w-auto text-center"
               >
                 Learn More
               </Link>
@@ -125,26 +126,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">
-              Ready to Take Charge?
-            </h2>
-            <p className="text-xl mb-8 text-gray-700 dark:text-gray-300">
-              Thousands of users are achieving financial freedom with
-              ExpenseTracker. Join them today.
-            </p>
-            <Link
-              href="/auth/signup"
-              className="bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105"
-            >
-              Start Your Free Trial
-            </Link>
-          </div>
-        </section>
       </main>
-
       <footer className="bg-gray-100 dark:bg-gray-900 py-10">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
