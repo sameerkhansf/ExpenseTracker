@@ -86,7 +86,7 @@ export default function Login() {
           {error && <p className="text-red-500 text-xs italic mt-4">{error}</p>}
         </form>
         <p className="text-center text-gray-500 text-xs">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/auth/signup"
             className="text-blue-500 hover:text-blue-800"

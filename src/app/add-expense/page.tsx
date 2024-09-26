@@ -43,7 +43,13 @@ export default function AddExpense() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">Add Expense</h1>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <ExpenseForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+      <ExpenseForm
+        onSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
+        onCancel={() => {
+          router.push("/dashboard");
+        }}
+      />
     </div>
   );
 }

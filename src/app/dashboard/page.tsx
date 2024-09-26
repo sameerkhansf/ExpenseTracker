@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Expense } from "@/types/expense";
 import ExpenseList from "@/components/ExpenseList";
 import ExpenseForm from "@/components/ExpenseForm";
@@ -27,7 +26,7 @@ export default function Dashboard() {
   const [view, setView] = useState<"list" | "summary">("list");
   const [darkMode, setDarkMode] = useState(false);
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  //   const [isSubmitting, setIsSubmitting] = useState(false);
   useEffect(() => {
     fetchExpenses();
   }, []);
@@ -363,7 +362,6 @@ export default function Dashboard() {
             <ExpenseForm
               onSubmit={handleAddExpense}
               onCancel={() => setIsAddExpenseModalOpen(false)}
-              isSubmitting={isSubmitting}
             />
           </div>
         </div>

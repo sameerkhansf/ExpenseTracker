@@ -91,7 +91,7 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Expense not found' }, { status: 404 });
     }
     return NextResponse.json(updatedExpense);
-  } catch (error) {
+  } catch (error: unknown) {
     return NextResponse.json({ error: 'Failed to update expense' }, { status: 500 });
   }
 }
@@ -120,7 +120,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Expense not found' }, { status: 404 });
     }
     return NextResponse.json({ message: 'Expense deleted successfully' });
-  } catch (error) {
+  } catch (error: unknown) {
     return NextResponse.json({ error: 'Failed to delete expense' }, { status: 500 });
   }
 }

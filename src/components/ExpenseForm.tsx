@@ -4,7 +4,7 @@ import { Expense } from "@/types/expense";
 interface ExpenseFormProps {
   onSubmit: (expenseData: Omit<Expense, "_id">) => Promise<void>;
   onCancel: () => void;
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
 }
 const CATEGORIES = [
   "Food",
