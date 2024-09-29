@@ -70,16 +70,25 @@ export async function PUT(request: Request) {
 
   try {
     const body = await request.json();
+    const { _id, ...updateData } = body;  // Destructure _id from the body
+
+    const user = await User.findOne({ email: session.user.email });
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
     const updatedExpense = await Expense.findOneAndUpdate(
-      { _id: body._id, user: body.userId }, // Use body.userId instead of userId
-      body,
+      { _id: _id, user: user._id },  // Use _id from the request body
+      updateData,
       { new: true }
     );
+
     if (!updatedExpense) {
       return NextResponse.json({ error: 'Expense not found' }, { status: 404 });
     }
     return NextResponse.json(updatedExpense);
   } catch (error: unknown) {
+    console.error('Error updating expense:', error);
     return NextResponse.json({ error: 'Failed to update expense' }, { status: 500 });
   }
 }

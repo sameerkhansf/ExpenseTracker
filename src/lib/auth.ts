@@ -43,6 +43,19 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }: { session: any; token: any }) {
       if (session.user) {
         session.user.id = token.id as string;
+
+        // Fetch the most up-to-date user data from the database
+        await dbConnect();
+        const dbUser = await User.findById(token.id).lean();
+
+        if (dbUser) {
+          // Update the session with the latest user data
+          session.user = {
+            ...session.user,
+            ...dbUser,
+            id: (dbUser as { _id: { toString(): string } })._id.toString(), // Ensure id is a string
+          };
+        }
       }
       return session;
     },

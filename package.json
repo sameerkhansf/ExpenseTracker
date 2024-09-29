@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.8",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.4",
@@ -20,6 +21,7 @@
     "mysql2": "^3.6.5",
     "next": "^14.2.13",
     "next-auth": "^4.24.8",
+    "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",

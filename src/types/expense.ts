@@ -2,6 +2,7 @@ export interface Expense {
     _id: string;
     date: string;
     amount: number;
+    description?: string;
     category: ExpenseCategory;
   }
 export enum ExpenseCategory {

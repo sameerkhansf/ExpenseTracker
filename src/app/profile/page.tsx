@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
-import DashboardContent from "@/components/Dashboard";
-import { AppProvider } from "@/context/AppContext";
+import Profile from "@/components/Profile";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -11,9 +10,5 @@ export default async function DashboardPage() {
     redirect("/auth/login");
   }
 
-  return (
-    <AppProvider>
-      <DashboardContent />
-    </AppProvider>
-  );
+  return <Profile />;
 }
