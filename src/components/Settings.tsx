@@ -99,7 +99,7 @@ export default function SettingsPage() {
         currency: (session.user as any).currency ?? "USD",
       });
     }
-  }, []); // Empty dependency array to run only once
+  }, [session?.user]);
 
   const handleSettingChange = useCallback(
     (key: string, value: any) => {

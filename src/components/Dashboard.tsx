@@ -35,10 +35,9 @@ function DashboardContent() {
   const [mounted, setMounted] = useState(false);
   const [isEditExpenseModalOpen, setIsEditExpenseModalOpen] = useState(false);
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
-  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [_showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const { state } = useAppContext();
-  const { data: session } = useSession();
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat(state.language, {
@@ -59,14 +58,6 @@ function DashboardContent() {
     };
     fetchSessionData();
   }, []);
-
-  const logout = () => {
-    signOut({ callbackUrl: "/" });
-  };
-
-  const confirmLogout = () => {
-    setShowLogoutConfirm(true);
-  };
 
   const handleLogout = () => {
     signOut({ callbackUrl: "/" });

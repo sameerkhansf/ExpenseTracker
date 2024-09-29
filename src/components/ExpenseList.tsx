@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Expense, ExpenseCategory } from "@/types/expense";
+import React, { useState } from "react";
+import { Expense } from "@/types/expense";
 import { FaEdit, FaTrash, FaSort, FaSearch } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppContext } from "@/context/AppContext";

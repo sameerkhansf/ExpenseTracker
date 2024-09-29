@@ -77,13 +77,6 @@ export default function ExpenseForm({
     return new Date(dateString).toISOString().split("T")[0];
   }
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat(state.language, {
-      style: "currency",
-      currency: state.currency,
-    }).format(amount);
-  };
-
   return (
     <motion.form
       onSubmit={handleSubmit}

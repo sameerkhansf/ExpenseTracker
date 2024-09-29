@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import {
   FaUser,
@@ -10,10 +9,6 @@ import {
   FaCalendar,
   FaDollarSign,
   FaLanguage,
-  FaShieldAlt,
-  FaBell,
-  FaEdit,
-  FaChartLine,
   FaCog,
   FaArrowLeft,
   FaCamera,

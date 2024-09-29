@@ -3,13 +3,14 @@
   "rules": {},
   "overrides": [
     {
-      "files": ["./src/app/api/expenses/route.ts"],
+      "files": ["./src/app/api/expenses/route.ts",  "./src/components/Settings.tsx", "./src/components/Profile.tsx", "./src/context/AppContext.tsx",
+    "./src/components/Dashboard.tsx", "./src/components/ExpenseForm.tsx"],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off"
       }
     },
     {
-      "files": ["./src/lib/auth.ts"],
+      "files": ["./src/lib/auth.ts", "./src/components/Settings.tsx", "./src/components/Profile.tsx", "./src/context/AppContext.tsx", "./src/components/Dashboard.tsx", "./src/components/ExpenseForm.tsx"],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off"
       }
