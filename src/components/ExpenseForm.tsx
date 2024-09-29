@@ -1,31 +1,22 @@
 import { useState } from "react";
-import { Expense } from "@/types/expense";
+import { Expense, ExpenseCategory } from "@/types/expense";
 import { IoIosArrowDown, IoLogoUsd } from "react-icons/io";
 interface ExpenseFormProps {
   onSubmit: (expenseData: Omit<Expense, "_id">) => Promise<void>;
   onCancel: () => void;
   isSubmitting?: boolean;
 }
-const CATEGORIES = [
-  "Food",
-  "Transportation",
-  "Housing",
-  "Utilities",
-  "Entertainment",
-  "Healthcare",
-  "Other",
-];
 
 export default function ExpenseForm({ onSubmit, onCancel }: ExpenseFormProps) {
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState(CATEGORIES[0]);
+  const [category, setCategory] = useState(ExpenseCategory.FOOD);
   const [date, setDate] = useState(new Date().toISOString());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({
       amount: parseFloat(amount),
-      category,
+      category: category as ExpenseCategory,
       date,
     });
   };
@@ -57,11 +48,11 @@ export default function ExpenseForm({ onSubmit, onCancel }: ExpenseFormProps) {
           <select
             id="category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value as ExpenseCategory)}
             className="pl-10 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-900 dark:text-white bg-white dark:bg-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline transition-all"
             required
           >
-            {CATEGORIES.map((cat) => (
+            {Object.values(ExpenseCategory).map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
               </option>

@@ -27,7 +27,6 @@ export default function Dashboard() {
   const [view, setView] = useState<"list" | "summary">("list");
   const [darkMode, setDarkMode] = useState(false);
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
-  //   const [isSubmitting, setIsSubmitting] = useState(false);
   useEffect(() => {
     fetchExpenses();
   }, []);
@@ -190,7 +189,10 @@ export default function Dashboard() {
               onClick={logout}
               className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
             >
-              <IoLogOut className="text-gray-600 dark:text-gray-300" />
+              <IoLogOut
+                className="text-gray-600 dark:text-gray-300"
+                size={20}
+              />
             </button>
           </div>
         </div>
