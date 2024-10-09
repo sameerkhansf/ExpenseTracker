@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expense Tracker
+
+A modern expense tracking application built with Next.js, React, and TypeScript.
+
+## Features
+
+- User authentication with NextAuth
+- Dashboard for expense overview
+- Add, edit, and delete expenses
+- Expense categorization
+- Data visualization with charts
+- Dark mode support
+- Responsive design
+
+## Technologies Used
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- Chart.js
+- Framer Motion
+- MongoDB (via Mongoose)
+- NextAuth for authentication
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```
+   git clone https://github.com/your-username/expense-tracker-next.git
+   cd expense-tracker-next
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add the following variables:
 
-## Learn More
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   NEXTAUTH_SECRET=your_nextauth_secret
+   NEXTAUTH_URL=http://localhost:3000
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/components`: React components
+- `src/pages`: Next.js pages and API routes
+- `src/types`: TypeScript type definitions
+- `src/utils`: Utility functions
+- `src/context`: React context providers
+- `src/styles`: Global styles and Tailwind CSS configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Available Scripts
+
+- `npm run dev`: Runs the app in development mode
+- `npm run build`: Builds the app for production
+- `npm start`: Runs the built app in production mode
+- `npm run lint`: Lints the codebase
+
+## Deployment
+
+This project is ready to be deployed on Vercel. For other deployment options, refer to the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the ISC License.

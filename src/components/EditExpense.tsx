@@ -24,7 +24,6 @@ export default function EditExpense({ params }: { params: { id: string } }) {
         if (!data) {
           throw new Error("No data returned from API");
         }
-        console.log("Fetched expense:", data); // Add this line
         setExpense(data);
       } catch (error) {
         console.error("Error fetching expense:", error);
